@@ -50,12 +50,29 @@ function playRound() {
             winner = "Make a valid move";
             break;
     }
-    if (winner == "Computer" || winner == "No one" || winner == "Player") {
-        console.log("Computer: " + computerMove);
-        console.log(winner + " wins");
-    } else {
-        console.log(winner);
-    }
+    return winner;
 }
 
-playRound();
+function game() {
+    let computerWins = 0,
+        playerWins = 0;
+    let winner;
+    for (let i = 0; i < 5; i++) {
+        winner = playRound();
+        if (winner == "Computer") {
+            computerWins++;
+        } else if (winner == "Player") {
+            playerWins++;
+        }
+    }
+    if (playerWins > computerWins) {
+        console.log("Compter:" + computerWins);
+        console.log("Player:" + playerWins);
+        console.log("Player wins");
+    } else {
+        console.log("Compter:" + computerWins);
+        console.log("Player:" + playerWins);
+        console.log("Computer wins");
+    }
+}
+game();
