@@ -1,54 +1,45 @@
 let score = 0;
 
-//generates a random number using Math and uses it to decide computer's move for that round
-let computerChoice = () => {
-    let randonNumber = Math.floor(Math.random() * 10) + 1;
+// generates a random number using Math and uses it to decide computer's move for that round
+function computerChoice() {
+    let randomNumber = Math.floor(Math.random() * 10) + 1;
     let computerMove;
-    if (randonNumber == 1 || randonNumber == 5 || randonNumber == 7) {
-        computerMove = "rock";
-    } else if (randonNumber == 3 || randonNumber == 6 || randonNumber == 9) {
-        computerMove = "scissor";
+    if (randomNumber == 1 || randomNumber == 5 || randomNumber == 7) {
+        computerMove = "Rock";
+    } else if (randomNumber == 3 || randomNumber == 6 || randomNumber == 9) {
+        computerMove = "Scissor";
     } else {
-        computerMove = "paper";
+        computerMove = "Paper";
     }
     return computerMove;
-}
-
-// checks which button was clicked and returns the move's name as a value
-let playerChoice = () => {
-    let moveSelection = document.querySelector(".move-selection");
-    moveSelection.addEventListener("click", e => {
-        value = e.path[0].id;
-        return value;
-    })
 }
 
 // function to check whether the player or computer won the last round
 // returns win if player won and returns loss if computer won and returns draw for draw
 let winOrLose = (playerChoice, computerChoice) => {
     switch (playerChoice) {
-        case "rock":
-            if (computerChoice == "paper") {
+        case "Rock":
+            if (computerChoice == "Paper") {
                 return ("loss");
-            } else if (computerChoice == "scissor") {
+            } else if (computerChoice == "Scissor") {
                 return ("win");
             } else {
                 return ("draw");
             }
             break;
-        case "paper":
-            if (computerChoice == "scissor") {
+        case "Paper":
+            if (computerChoice == "Scissor") {
                 return ("loss");
-            } else if (computerChoice == "rock") {
+            } else if (computerChoice == "Rock") {
                 return ("win");
             } else {
                 return ("draw");
             }
             break;
-        case "scissor":
-            if (computerChoice == "paper") {
+        case "Scissor":
+            if (computerChoice == "Paper") {
                 return ("loss");
-            } else if (computerChoice == "rock") {
+            } else if (computerChoice == "Rock") {
                 return ("win");
             } else {
                 return ("draw");
@@ -57,52 +48,42 @@ let winOrLose = (playerChoice, computerChoice) => {
     }
 }
 
-// actual function that playes the game and updates the runnning score
-// also displays the latest move of computer and player
-let play = () => {
-
-    // getting the moves made by the computer and the player using their functions
-    let computerMove = computerChoice();
-    let playerMove = playerChoice();
-
-    // displaying the latest move made by the player and computer
+// displaying the latest move made by the player and computer
+function currentMove(playerMove, computerMove) {
     let latestplayerMove = document.getElementById("latest-player-move");
     let latestcomputerMove = document.getElementById("latest-computer-move");
     latestplayerMove.innerText = playerMove;
     latestcomputerMove.innerText = computerMove;
-
-    // updating the score based on the latest move 
-    let result = winOrLose(playerMove, computerMove);
-    let displayedScore = document.querySelector(".score");
-    let latestScore = parseInt(displayedScore);
-    if (result == "win") {
-        latestScore++;
-    } else if (result == "loss") {
-        latestScore--;
-    }
-    displayedScore.innerText = latestScore;
-    return latestScore;
 }
+
+// decides if the round was win or loss and then updates the global variable score and also the DOM score
+function updateScore(result) {
+    let displayedScore = document.querySelector(".score");
+    if (result == "win") {
+        score++
+    } else if (result == "loss") {
+        score--
+    }
+    displayedScore.innerText = score;
+}
+
 
 // decides the winner on +5 or -5 score
 function winner() {
-    let n = 0;
-    while (n = 0) {
-        if (score == 5) {
-            alert("Player Wins!");
-            n = 1;
-        } else if (score == -5) {
-            alert("Computer Wins!");
-            n = 1
-        } else {
-            score = play();
-        }
+    let gameOver;
+    if (score == 5) {
+        alert("Player Wins!");
+        gameOver = true;
+    } else if (score == -5) {
+        alert("Computer Wins!");
+        gameOver = false;
     }
+    return gameOver;
 }
 
 // resets all the elements to the default state, clears player moves, scores, etc
 // starts a new round
-function resetRound() {
+function resetGame() {
     let reset = document.querySelector("#reset-round");
     reset.addEventListener("click", e => {
         let element = document.getElementById("latest-player-move");
@@ -112,7 +93,23 @@ function resetRound() {
         element = document.querySelector(".score");
         element.innerText = "0";
     })
-    winner();
 }
 
-resetRound();
+// checks which button was clicked and returns the move's name as a value
+function playerChoice() {
+
+    let moveSelection = document.querySelector(".move-selection");
+    moveSelection.addEventListener("click", e => {
+        let playerMove = e.path[0].innerText; // player move
+        let computerMove = computerChoice(); // computer move
+        currentMove(playerMove, computerMove);
+        let result = winOrLose(playerMove, computerMove); // result of the two moves
+        updateScore(result); // updates the result of the moves in the HTML
+        winner();
+        resetGame();
+    });
+}
+
+
+// start the program once player chooses a move
+playerChoice();
