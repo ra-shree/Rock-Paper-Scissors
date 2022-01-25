@@ -41,43 +41,36 @@ function winOrLose(playerMove, computerMove) {
     return score;
 }
 
-function playRound() {
-    // getting the moves made by the computer and the player using the functions
-    let computerMove = computerPlay();
-    let playerMove = playerMove();
-    let newScore = winOrLose(playerMove, computerMove);
-    let score = score + newScore;
+// function playRound() {
+//     // getting the moves made by the computer and the player using the functions
+//     let computerMove = computerPlay();
+//     let playerMove = playerMove();
+//     let newScore = winOrLose(playerMove, computerMove);
+//     let score = score + newScore;
 
-    const moves = document.querySelector("moves");
-    movesChildren = moves.children;
+//     const moves = document.querySelector("moves");
+//     movesChildren = moves.children;
 
-    // display what moves the player and computer made in last round
-    movesChildren[0].innerText = `Player move: ${playerMove}`;
-    movesChildren[1].innerText = `Computer move: ${computerMove}`;
+//     // display what moves the player and computer made in last round
+//     movesChildren[0].innerText = `Player move: ${playerMove}`;
+//     movesChildren[1].innerText = `Computer move: ${computerMove}`;
 
-    // when reset is pressed, the score needs to be set to 0 and the panel should be cleared
-    resetButton = document.getElementById("reset-round");
-    resetButton.onclick = () => {
-        score = 0;
-        htmlScore = document.querySelector("score");
-        htmlScore.textContent = score;
-        movesChildren[0].innerText = `Player move: `;
-        movesChildren[1].innerText = `Computer move: `;
-    };
-}
+//     // when reset is pressed, the score needs to be set to 0 and the panel should be cleared
+//     resetButton = document.getElementById("reset-round");
+//     resetButton.onclick = () => {
+//         score = 0;
+//         htmlScore = document.querySelector("score");
+//         htmlScore.textContent = score;
+//         movesChildren[0].innerText = `Player move: `;
+//         movesChildren[1].innerText = `Computer move: `;
+//     };
+// }
 
 // checks which button was clicked and returns the move's name as a value
-function playerMove() {
-    scissor = document.getElementById("scissor");
-    paper = document.getElementById("paper");
-    rock = document.getElementById("rock");
-    scissor.onclick = () => {
-        return "scissor";
-    };
-    paper.onclick = () => {
-        return "paper";
-    };
-    rock.onclick = () => {
-        return "rock";
-    };
+let playerChoice = () => {
+    let moveSelection = document.querySelector(".move-selection");
+    moveSelection.addEventListener("click", e => {
+        value = e.path[0].id;
+        return value;
+    })
 }
