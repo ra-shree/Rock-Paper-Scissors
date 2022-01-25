@@ -70,19 +70,16 @@ function updateScore(result) {
 
 // decides the winner on +5 or -5 score
 function winner() {
-    let gameOver;
     if (score == 5) {
         alert("Player Wins!");
-        gameOver = true;
+        reset();
     } else if (score == -5) {
         alert("Computer Wins!");
-        gameOver = false;
+        reset();
     }
-    return gameOver;
 }
 
-// resets all the elements to the default state, clears player moves, scores, etc
-// starts a new round
+// resets the game when the reset button is pressed
 function resetGame() {
     let reset = document.querySelector("#reset-round");
     reset.addEventListener("click", e => {
@@ -95,9 +92,18 @@ function resetGame() {
     })
 }
 
+// reset game on win 
+function reset() {
+    let element = document.getElementById("latest-player-move");
+    element.innerText = "";
+    element = document.getElementById("latest-computer-move");
+    element.innerText = "";
+    element = document.querySelector(".score");
+    element.innerText = "0";
+}
+
 // checks which button was clicked and returns the move's name as a value
 function playerChoice() {
-
     let moveSelection = document.querySelector(".move-selection");
     moveSelection.addEventListener("click", e => {
         let playerMove = e.path[0].innerText; // player move
