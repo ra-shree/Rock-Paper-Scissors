@@ -4,9 +4,9 @@ let score = 0;
 function computerChoice() {
     let randomNumber = Math.floor(Math.random() * 10) + 1;
     let computerMove;
-    if (randomNumber == 1 || randomNumber == 5 || randomNumber == 7) {
+    if (randomNumber === 1 || randomNumber === 5 || randomNumber === 7) {
         computerMove = "Rock";
-    } else if (randomNumber == 3 || randomNumber == 6 || randomNumber == 9) {
+    } else if (randomNumber === 3 || randomNumber === 6 || randomNumber === 9) {
         computerMove = "Scissor";
     } else {
         computerMove = "Paper";
@@ -19,32 +19,29 @@ function computerChoice() {
 let winOrLose = (playerChoice, computerChoice) => {
     switch (playerChoice) {
         case "Rock":
-            if (computerChoice == "Paper") {
+            if (computerChoice === "Paper") {
                 return ("loss");
-            } else if (computerChoice == "Scissor") {
+            } else if (computerChoice === "Scissor") {
                 return ("win");
             } else {
                 return ("draw");
             }
-            break;
         case "Paper":
-            if (computerChoice == "Scissor") {
+            if (computerChoice === "Scissor") {
                 return ("loss");
-            } else if (computerChoice == "Rock") {
+            } else if (computerChoice === "Rock") {
                 return ("win");
             } else {
                 return ("draw");
             }
-            break;
         case "Scissor":
-            if (computerChoice == "Paper") {
+            if (computerChoice === "Paper") {
                 return ("loss");
-            } else if (computerChoice == "Rock") {
+            } else if (computerChoice === "Rock") {
                 return ("win");
             } else {
                 return ("draw");
             }
-            break;
     }
 }
 
@@ -59,9 +56,9 @@ function currentMove(playerMove, computerMove) {
 // decides if the round was win or loss and then updates the global variable score and also the DOM score
 function updateScore(result) {
     let displayedScore = document.querySelector(".score");
-    if (result == "win") {
+    if (result === "win") {
         score++
-    } else if (result == "loss") {
+    } else if (result === "loss") {
         score--
     }
     displayedScore.innerText = score;
@@ -70,10 +67,10 @@ function updateScore(result) {
 
 // decides the winner on +5 or -5 score
 function winner() {
-    if (score == 5) {
+    if (score === 5) {
         alert("Player Wins!");
         reset();
-    } else if (score == -5) {
+    } else if (score === -5) {
         alert("Computer Wins!");
         reset();
     }
