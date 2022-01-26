@@ -2,14 +2,33 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Rock Paper Scissors</title>
 </head>
 
 <body>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
+    <div class="container">
+        <button type="button" id="reset-round">Reset</button>
+        <div class="move-selection">
+            <button type="button" id="scissor">Scissor</button>
+            <button type="button" id="paper">Paper</button>
+            <button type="button" id="rock">Rock</button>
+        </div>
+        <div class="gui-board">
+            <div class="moves">
+                <p id="computer-move">Player Move: <span id="latest-computer-move"></span></p>
+                <p id="player-move">Computer Move: <span id="latest-player-move"></span></p>
+            </div>
+            <div class="result">
+                <span>Score</span>
+                <div class="score"></div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
