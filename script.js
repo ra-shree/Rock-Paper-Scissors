@@ -24,20 +24,24 @@ const winOrLose = (playerChoice, computerChoice) => {
             } else if (computerChoice === "Scissor") {
                 return ("win");
             }
+            break;
         case "Paper":
             if (computerChoice === "Scissor") {
                 return ("loss");
             } else if (computerChoice === "Rock") {
                 return ("win");
             }
+            break;
         case "Scissor":
             if (computerChoice === "Paper") {
                 return ("loss");
             } else if (computerChoice === "Rock") {
                 return ("win");
             }
+            break;
         default:
             return ("draw");
+            break;
     }
 }
 
