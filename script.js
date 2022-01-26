@@ -16,26 +16,26 @@ function computerChoice() {
 
 // function to check whether the player or computer won the last round
 // returns win if player won and returns loss if computer won and returns draw for draw
-function winOrLose(playerChoice, computerChoice) {
-    switch (playerChoice) {
+function winOrLose(player, computer) {
+    switch (player) {
         case "Rock":
-            if (computerChoice === "Paper") {
+            if (computer === "Paper") {
                 return ("loss");
-            } else if (computerChoice === "Scissor") {
+            } else if (computer === "Scissor") {
                 return ("win");
             }
             break;
         case "Paper":
-            if (computerChoice === "Scissor") {
+            if (computer === "Scissor") {
                 return ("loss");
-            } else if (computerChoice === "Rock") {
+            } else if (computer === "Rock") {
                 return ("win");
             }
             break;
         case "Scissor":
-            if (computerChoice === "Paper") {
+            if (computer === "Paper") {
                 return ("loss");
-            } else if (computerChoice === "Rock") {
+            } else if (computer === "Rock") {
                 return ("win");
             }
             break;
@@ -87,8 +87,8 @@ function winner() {
 
 // resets the game when the reset button is pressed
 function resetGame() {
-    const reset = document.querySelector("#reset-round");
-    reset.addEventListener("click", () => {
+    const resetRound = document.querySelector("#reset-round");
+    resetRound.addEventListener("click", () => {
         let element = document.getElementById("latest-player-move");
         element.innerText = "";
         element = document.getElementById("latest-computer-move");
