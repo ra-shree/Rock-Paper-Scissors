@@ -16,7 +16,7 @@ function computerChoice() {
 
 // function to check whether the player or computer won the last round
 // returns win if player won and returns loss if computer won and returns draw for draw
-const winOrLose = (playerChoice, computerChoice) => {
+function winOrLose(playerChoice, computerChoice) {
     switch (playerChoice) {
         case "Rock":
             if (computerChoice === "Paper") {
