@@ -64,6 +64,15 @@ function updateScore(result) {
     displayedScore.innerText = score;
 }
 
+// reset game on win 
+function reset() {
+    let element = document.getElementById("latest-player-move");
+    element.innerText = "";
+    element = document.getElementById("latest-computer-move");
+    element.innerText = "";
+    element = document.querySelector(".score");
+    element.innerText = "0";
+}
 
 // decides the winner on +5 or -5 score
 function winner() {
@@ -87,16 +96,6 @@ function resetGame() {
         element = document.querySelector(".score");
         element.innerText = "0";
     })
-}
-
-// reset game on win 
-function reset() {
-    let element = document.getElementById("latest-player-move");
-    element.innerText = "";
-    element = document.getElementById("latest-computer-move");
-    element.innerText = "";
-    element = document.querySelector(".score");
-    element.innerText = "0";
 }
 
 // checks which button was clicked and returns the move's name as a value
