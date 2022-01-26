@@ -36,6 +36,7 @@ const winOrLose = (playerChoice, computerChoice) => {
             } else if (computerChoice === "Rock") {
                 return ("win");
             }
+        default:
             return ("draw");
     }
 }
