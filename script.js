@@ -41,7 +41,6 @@ function winOrLose(player, computer) {
             break;
         default:
             return ("draw");
-            break;
     }
 }
 
